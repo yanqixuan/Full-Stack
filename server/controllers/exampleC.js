@@ -1,7 +1,7 @@
 const exampleM = require('../models/exampleM');
 
 const getExample = async (ctx, next) => {
-  console.log(1);
+  // console.log(1);
   const req = ctx.request.query;
   const example = await exampleM.find({});
   ctx.status = 200;

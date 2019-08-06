@@ -21,8 +21,10 @@ app.use(cors())
 app.use(bodyParser())
 
 const exampleR = require('./routes/exampleR')
+const login_route = require('./routes/login_route')
 
 app.use(exampleR.routes()).use(exampleR.allowedMethods());
+app.use(login_route.routes()).use(login_route.allowedMethods());
 
 app.listen(config.port,() => {
   console.log(config.port)

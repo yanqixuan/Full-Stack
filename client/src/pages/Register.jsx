@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button } from 'antd';
-import  { getExample }  from '../api/index'
+import { loginPost } from '../api/index'
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -11,16 +11,19 @@ class HorizontalLoginForm extends React.Component {
     // To disabled submit button at the beginning.
     this.props.form.validateFields();
   }
+  
 
-  handleSubmit = e => {
-    getExample()
-    console.log(e)
+  handleSubmit = e => { 
+    console.log(this.props)
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        loginPost(values.username, values.password)
+        this.props.history.push('./login')
       }
     });
+    return false;
   };
 
   render() {
@@ -30,7 +33,7 @@ class HorizontalLoginForm extends React.Component {
     const usernameError = isFieldTouched('username') && getFieldError('username');
     const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
-      <Form layout="inline" onSubmit={this.handleSubmit}>
+      <Form layout="inline" id='form' onSubmit={this.handleSubmit} >
         <Form.Item validateStatus={usernameError ? 'error' : ''} help={usernameError || ''}>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!' }],

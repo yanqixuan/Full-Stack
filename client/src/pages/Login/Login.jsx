@@ -1,13 +1,20 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Login.css'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { loginGet } from '../../api/index'
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
+    
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        loginGet(values.username, values.password).then(res => {
+          if(res){
+            this.props.history.push('/home')
+          }
+        })
       }
     });
   };
