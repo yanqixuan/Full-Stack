@@ -14,7 +14,7 @@ function App() {
           <Route path='/home'  component={Home} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          {/* <Redirect from='/*' to='/login' /> */}
+          <Redirect from='/*' to='/login' />
         </Switch>
       </Router>
     </div>
