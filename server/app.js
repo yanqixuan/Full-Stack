@@ -5,6 +5,8 @@ const bodyParser = require('koa-bodyparser');
 const config = require('./config')  //配置文件引入
 
 const app = new Koa();
+const server = require('http').Server(app.callback());
+const io = require('socket.io')(server);
 
 mongoose.connect(config.db, {
   useNewUrlParser: true,
@@ -26,6 +28,17 @@ const login_route = require('./routes/login_route')
 app.use(exampleR.routes()).use(exampleR.allowedMethods());
 app.use(login_route.routes()).use(login_route.allowedMethods());
 
-app.listen(config.port,() => {
+io.on('connection', socket => {
+  console.log('初始化成功，下面使用socket绑定和触发事件');
+  socket.on('send1', data =>{
+    console.log('接收send1消息',data)
+  })
+  socket.on('sendToId', data => {
+    console.log('接收到id1的消息', data)
+  })
+
+})
+
+server.listen(config.port,() => {
   console.log(config.port)
 })

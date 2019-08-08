@@ -12,7 +12,12 @@ class NormalLoginForm extends React.Component {
         console.log('Received values of form: ', values);
         loginGet(values.username, values.password).then(res => {
           if(res){
-            this.props.history.push('/home')
+            this.props.history.push({
+              pathname:'/home',
+              query: {
+                username:res.username
+              }
+            })
           }
         })
       }

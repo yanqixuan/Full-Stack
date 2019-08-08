@@ -1,42 +1,64 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import LeftNav from '../components/LeftNav/leftNav'
 import Collection from '../components/Collection/Collection'
 import Message from '../components/Message/Message'
 import People from '../components/People/People'
+import io from 'socket.io-client'
+import'./Home.styl'
 
 export class Home extends Component {
   state = {
+    username:'',
+    active:1,
     leftItems:[
       {
         id:1,
         path:'/home/message',
-        img:'a'
+        img:'message'
       },
       {
         id:2,
         path:'/home/people',
-        img:'b'
+        img:'message'
       },
       {
         id:3,
         path:'/home/collection',
-        img:'c'
+        img:'message'
       }
     ]
+  }
+  changeActive(id){
+    this.setState({
+      active:id
+    })
+  }
+  componentWillMount(){
+    // console.log(this.props.location.query.username)
+    const socket = io('ws://localhost:8080')
+    // socket.emit('send1','hello')
+    socket.emit('sendToId',{"to":"id1","msg":"id1的消息"})
+    this.setState({
+      username:this.props.location.query.username
+    })
   }
   render() {
     const leftSlide = this.state.leftItems.map((item) => {
       return (
-        <div key={item.id}>
+        <div key={item.id} onClick={() => {this.changeActive(item.id)}} className={item.id === this.state.active ? 'active':''} >
           <LeftNav path={item.path} img={item.img} />
         </div>
       )
     })
     return (
-      <div>
+      <div className='content'>
         Home
-        {leftSlide}
+        <div className="left-container">
+          {this.state.username}
+          {leftSlide}
+        </div>
+        
         <div className="container">
               <Route path='/home/message' exact component={Message} />
               <Route path='/home/people' component={People} />
