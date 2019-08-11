@@ -31,7 +31,7 @@ app.use(login_route.routes()).use(login_route.allowedMethods());
 io.on('connection', socket => {
   console.log('初始化成功，下面使用socket绑定和触发事件');
   socket.on('send1', data =>{
-    console.log('接收send1消息',data)
+    console.log('接收send1消息',data) 
   })
   socket.on('sendToId', data => {
     console.log('接收到id1的消息', data)
