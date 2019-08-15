@@ -35,10 +35,14 @@ export class Home extends Component {
     })
   }
   componentWillMount(){
+    
+  }
+  componentDidMount(){
     // console.log(this.props.location.query.username)
-    const socket = io('ws://localhost:8080')
+    // const socket = io('ws://localhost:8080')
     // socket.emit('send1','hello')
-    socket.emit('sendToId',{"to":"id1","msg":"id1的消息"})
+    // console.log( 'socket',socket)
+    // socket.emit('sendToId',{"to":"id1","msg":"id1的消息"})
     this.setState({
       username:this.props.location.query.username
     })
