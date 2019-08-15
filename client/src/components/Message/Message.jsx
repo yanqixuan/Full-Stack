@@ -1,28 +1,41 @@
 import React, { Component } from 'react'
 import { SendForm } from '../SendForm/SendForm'
-import io from 'socket.io-client'
+import socket from '../../socket'
 
 export class Message extends Component {
   state = {
-    id:'AA',
-    msg:''
+    message:[
+    ]
   }
   componentDidMount () {
-    const socket = io("ws://localhost:8080")
     console.log('message',socket)
-    socket.emit('sendMsg',{'id':this.state.id,'msg':'AA的msg'})
     socket.on('receiveMsg',data => {
       console.log(data)
+      let message = this.state.message;
+      message.push({ id:data.id,msg:data.msg,date:data.date })
       this.setState({
         msg:data.msg
       })
     })
   }
+  componentWillUnmount() {
+    // this.setState = (state,callback) => {
+    //   return ;
+    // }
+    socket.removeAllListeners();
+  }
   render() {
+    const msgList = this.state.message.map(item => {
+      return (
+        <div key={item.date}>
+          {item.id} : {item.msg}
+        </div>
+      )
+    })
     return (
       <div>
         message
-        {this.state.msg}
+        {msgList}
         <SendForm />
       </div>
     )
