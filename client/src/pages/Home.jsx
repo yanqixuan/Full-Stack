@@ -34,9 +34,6 @@ export class Home extends Component {
       active:id
     })
   }
-  componentWillMount(){
-    
-  }
   componentDidMount(){
     // console.log(this.props.location.query.username)
     // const socket = io('ws://localhost:8080')
@@ -46,6 +43,7 @@ export class Home extends Component {
     this.setState({
       username:this.props.location.query.username
     })
+    this.props.history.push({pathname:"/home/message",query: { name : this.props.location.query.username }});
   }
   render() {
     const leftSlide = this.state.leftItems.map((item) => {

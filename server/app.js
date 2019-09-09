@@ -36,9 +36,11 @@ io.on('connection', socket => {
   // socket.on('sendToId', data => {
   //   console.log('接收到id1的消息', data)
   // })
+
   socket.on('sendMsg',data => {
     console.log(data)
-    socket.emit('receiveMsg',data)
+    // socket.emit('receiveMsg',data)
+    io.sockets.emit('receiveMsg',data)
   })
 
 })
