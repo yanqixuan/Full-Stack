@@ -45,6 +45,9 @@ export function loginGet(username, password){
       password
     }
   }).then(res => {
+    console.log(res)
+    localStorage.clear();
+    localStorage.setItem('user_token',res.data.data.token)
     if(res.data.data.result.length >0){
       alert('登录成功')
       return res.data.data.result[0]
