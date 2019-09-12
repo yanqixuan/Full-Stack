@@ -17,7 +17,7 @@ export class SendForm extends Component {
   sumbit(){
     const value = this.state.value;
     console.log(this.props.username,value)
-    socket.emit('sendMsg',{'id':this.props.username,'msg':value,'date':new Date(), 'socketID':socket.id})
+    socket.emit('sendMsg',{'name':this.props.username,'msg':value,'date':new Date(), 'socketID':socket.id})
     this.setState({
       value:''
     })

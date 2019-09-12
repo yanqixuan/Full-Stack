@@ -38,7 +38,7 @@ export function registerPost(username, password){
   })
 }
 
-export function loginGet(username, password){
+export function loginPost(username, password){
   return (axios.post(apiLoginPost,{
       username,
       password

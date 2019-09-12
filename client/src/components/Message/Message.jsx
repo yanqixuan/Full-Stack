@@ -24,7 +24,7 @@ export class Message extends Component {
     socket.on('receiveMsg', data => {
       // console.log(data)
       let message = this.state.message;
-      message.push({ id: data.id, msg: data.msg, date: data.date })
+      message.push({ name: data.name, msg: data.msg, date: data.date })
       this.setState({
         msg: data.msg,
       })
@@ -53,7 +53,7 @@ export class Message extends Component {
     const msgList = this.state.message.map(item => {
       return (
         <div key={item.date}>
-          {item.id} : {item.msg}
+          {item.name} : {item.msg}
         </div>
       )
     })
