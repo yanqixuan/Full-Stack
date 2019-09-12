@@ -1,7 +1,7 @@
 const user_module = require('../models/user_models')
 const jsonwebtoken = require('jsonwebtoken')
 
-const postLogin = async (ctx, next) => {
+const postRegister = async (ctx, next) => {
   const req = ctx.request.body;
   ctx.status = 200;
   const result = await user_module.create({username:req.username, password:req.password});
@@ -11,9 +11,9 @@ const postLogin = async (ctx, next) => {
   }
 }
 
-const getLogin = async (ctx, next) => {
+const postLogin = async (ctx, next) => {
   ctx.status = 200;
-  const req = ctx.request.query;
+  const req = ctx.request.body;
   const result = await user_module.find({username:req.username, password:req.password});
   console.log(req.username)
 
@@ -33,6 +33,6 @@ const getLogin = async (ctx, next) => {
 }
 
 module.exports = {
-  getLogin,
-  postLogin
+  postLogin,
+  postRegister
 }

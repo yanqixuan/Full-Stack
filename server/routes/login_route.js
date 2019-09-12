@@ -1,8 +1,8 @@
 const Router = require('koa-router')
 const router = new Router();
-const { postLogin, getLogin } = require('../controllers/login_control')
+const { postRegister, postLogin } = require('../controllers/login_control')
 
+router.post('/register/post', postRegister)
 router.post('/login/post', postLogin)
-router.get('/login/get', getLogin)
 
 module.exports = router

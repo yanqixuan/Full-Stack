@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Icon, Input, Button } from 'antd';
-import { loginPost } from '../api/index'
+import { registerPost } from '../api/index'
 
 function hasErrors(fieldsError) {
   return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -19,7 +19,7 @@ class HorizontalLoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
-        loginPost(values.username, values.password)
+        registerPost(values.username, values.password)
         this.props.history.push('./login')
       }
     });

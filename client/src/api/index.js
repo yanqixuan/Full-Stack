@@ -2,8 +2,8 @@ const axios = require('axios')
 axios.defaults.baseURL = 'http://localhost:8080'
 const apiGet = '/example/get'
 const apiPost = '/example/post'
+const apiRegister = '/register/post'
 const apiLoginPost = '/login/post'
-const apiLoginGet = '/login/get'
 
 axios.defaults.timeout = 10000
 
@@ -29,8 +29,8 @@ export function postExample() {
   axios.post(apiPost)
 }
 
-export function loginPost(username, password){
-  axios.post(apiLoginPost,{
+export function registerPost(username, password){
+  axios.post(apiRegister,{
     username,
     password
   }).then(res => {
@@ -39,11 +39,9 @@ export function loginPost(username, password){
 }
 
 export function loginGet(username, password){
-  return (axios.get(apiLoginGet,{
-    params:{
+  return (axios.post(apiLoginPost,{
       username,
       password
-    }
   }).then(res => {
     console.log(res)
     localStorage.clear();
