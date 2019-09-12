@@ -47,9 +47,6 @@ export class Message extends Component {
     })
   }
   componentWillUnmount() {
-    // this.setState = (state,callback) => {
-    //   return ;
-    // }
     socket.removeAllListeners();
   }
   render() {

@@ -4,7 +4,6 @@ import LeftNav from '../components/LeftNav/leftNav'
 import Collection from '../components/Collection/Collection'
 import Message from '../components/Message/Message'
 import People from '../components/People/People'
-import io from 'socket.io-client'
 import'./Home.styl'
 
 export class Home extends Component {
