@@ -54,7 +54,7 @@ class NormalLoginForm extends React.Component {
             valuePropName: 'checked',
             initialValue: true,
           })(<Checkbox>Remember me</Checkbox>)}
-          <a className="login-form-forgot" href="">
+          <a className="login-form-forgot" href="/">
             Forgot password
           </a>
           <Button type="primary" htmlType="submit" className="login-form-button">
@@ -68,21 +68,4 @@ class NormalLoginForm extends React.Component {
 }
 
 const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
-
-// ReactDOM.render(<WrappedNormalLoginForm />, mountNode);
 export default WrappedNormalLoginForm
-
-
-// export class Login extends Component {
-//   render() {
-//     return (
-//       <div>
-//          <Button type="primary">登录</Button>
-//          <Button type="default" href='/register'>注册</Button>
-         
-//       </div>
-//     )
-//   }
-// }
-
-// export default Login
